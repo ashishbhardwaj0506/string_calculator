@@ -5,3 +5,8 @@ calculate numbers in string
 <h4> 
 Added README.md
 </h4>
+
+> version - 0.0.2
+<h4> 
+Write code and test cases for calculate numbers in string
+</h4>
