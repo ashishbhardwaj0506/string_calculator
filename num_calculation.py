@@ -25,3 +25,18 @@ class TestCalculator(unittest.TestCase):
 
     def test_not_present_in_numbers(self):
         self.assertEqual(calculator("//;\n123"), 123)
+
+    def test_single_negative_number(self):
+        with self.assertRaises(Exception) as context:
+            calculator("1,-2,3")
+        self.assertEqual(str(context.exception), "Invalid input: No negative numbers pass.")
+
+    def test_multiple_negative_numbers(self):
+        with self.assertRaises(Exception) as context:
+            calculator("//;\n1;-2;-3")
+        self.assertEqual(str(context.exception), "Invalid input: No negative numbers pass -2,-3")
+
+    def test_negative_number_with_delimiter(self):
+        with self.assertRaises(Exception) as context:
+            calculator("//|\n-5|6")
+        self.assertEqual(str(context.exception), "Invalid input: No negative numbers pass.")
