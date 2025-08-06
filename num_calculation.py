@@ -40,3 +40,16 @@ class TestCalculator(unittest.TestCase):
         with self.assertRaises(Exception) as context:
             calculator("//|\n-5|6")
         self.assertEqual(str(context.exception), "Invalid input: No negative numbers pass.")
+
+    def test_invalid_non_numeric_input(self):
+        with self.assertRaises(ValueError) as context:
+            calculator("1,a,3")
+        self.assertEqual(str(context.exception), "Invalid input: Ensure all values are numbers.")
+
+    def test_custom_delimiter_non_numeric_input(self):
+        with self.assertRaises(ValueError) as context:
+            calculator("//;\n1;2;a")
+        self.assertEqual(str(context.exception), "Invalid input: Ensure all values are numbers.")
+
+    def test_custom_delimiter_multi_character(self):
+        self.assertEqual(calculator("//abc\n1abc2abc3"), 6)
